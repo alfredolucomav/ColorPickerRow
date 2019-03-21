@@ -156,8 +156,8 @@ public final class ColorPickerCell : Cell<UIColor>, CellType, UICollectionViewDe
 
             dynamicConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-6-[titleLabel]-4-[colorsView(100)]|", options: [], metrics: nil, views: views))
             dynamicConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[swatchView(30)]", options: [], metrics: nil, views: views))
-            dynamicConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-30-[titleLabel]-[swatchView(30)]-30-|", options: [], metrics: nil, views: views))
-            dynamicConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[colorsView]-|", options: [], metrics: nil, views: views))
+            dynamicConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-(16)-[titleLabel]-[swatchView(30)]-(16)-|", options: [], metrics: nil, views: views))
+            dynamicConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-(16)-[colorsView]-(16)-|", options: [], metrics: nil, views: views))
             card.addConstraints(dynamicConstraints)
         }
     }
