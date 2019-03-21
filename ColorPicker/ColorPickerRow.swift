@@ -43,6 +43,8 @@ public final class ColorPickerCell : Cell<UIColor>, CellType, UICollectionViewDe
             colorsView.reloadData()
         }
     }
+    
+    public var card: UIView = UIView()
 
     private var dynamicConstraints = [NSLayoutConstraint]()
     private var notificationObserver : NSObjectProtocol?
@@ -98,9 +100,9 @@ public final class ColorPickerCell : Cell<UIColor>, CellType, UICollectionViewDe
         selectionStyle = .none
         layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         colorsView.backgroundColor = backgroundColor
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(swatchView)
-        contentView.addSubview(colorsView)
+        card.addSubview(titleLabel)
+        card.addSubview(swatchView)
+        card.addSubview(colorsView)
         
         setNeedsUpdateConstraints()
         
@@ -111,6 +113,11 @@ public final class ColorPickerCell : Cell<UIColor>, CellType, UICollectionViewDe
                                                                         self?.titleLabel.font = UIFont.preferredFont(forTextStyle: .body)
                                                                         self?.setNeedsUpdateConstraints()
         })
+        
+        card.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(card)
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|-[card]-|", options: [], metrics: nil, views: ["card" : card]))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[card]|", options: [], metrics: nil, views: ["card" : card]))
     }
     
     public override func didSelect() {
@@ -151,7 +158,7 @@ public final class ColorPickerCell : Cell<UIColor>, CellType, UICollectionViewDe
             dynamicConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[swatchView(30)]", options: [], metrics: nil, views: views))
             dynamicConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-30-[titleLabel]-[swatchView(30)]-30-|", options: [], metrics: nil, views: views))
             dynamicConstraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|-[colorsView]-|", options: [], metrics: nil, views: views))
-            contentView.addConstraints(dynamicConstraints)
+            card.addConstraints(dynamicConstraints)
         }
     }
 
