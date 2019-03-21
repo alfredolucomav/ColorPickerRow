@@ -202,6 +202,8 @@ public final class ColorPickerCell : Cell<UIColor>, CellType, UICollectionViewDe
         
         baseRow.baseValue = newColor
         swatchView.color = newColor
+        
+        row.updateCell()
     }
 
     //  UICollectionViewDataSource
